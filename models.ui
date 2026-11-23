@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ModelDialog</class>
+ <widget class="QDialog" name="ModelDialog">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>560</width><height>300</height></rect></property>
+  <property name="windowTitle"><string>Выберите модель</string></property>
+  <property name="styleSheet"><string notr="true">QDialog { background: #000000; color: #ffffff; }
+QLabel { color: #ffffff; background: transparent; }
+QPushButton { padding: 12px; text-align: left; color: #ffffff; background: #202020; border: 1px solid #555555; border-radius: 5px; }
+QPushButton:hover { background: #333333; }
+QPushButton:checked { background: #264d76; border-color: #75a8e0; color: #ffffff; }</string></property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing"><number>12</number></property>
+   <item><widget class="QLabel" name="headingLabel"><property name="text"><string>Модель для текущего чата</string></property><property name="styleSheet"><string notr="true">font-size: 17px; font-weight: bold;</string></property></widget></item>
+   <item><widget class="QPushButton" name="miniButton"><property name="minimumSize"><size><width>0</width><height>65</height></size></property><property name="text"><string>GPT-4o mini</string></property></widget></item>
+   <item><widget class="QPushButton" name="nanoButton"><property name="minimumSize"><size><width>0</width><height>65</height></size></property><property name="text"><string>GPT-5 nano</string></property></widget></item>
+   <item><widget class="QPushButton" name="liteButton"><property name="minimumSize"><size><width>0</width><height>65</height></size></property><property name="text"><string>GPT-6 Luna</string></property></widget></item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

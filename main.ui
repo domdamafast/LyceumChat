@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChatWindow</class>
+ <widget class="QMainWindow" name="ChatWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1397</width>
+    <height>799</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>880</width>
+    <height>620</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Лицей Чат</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget { background: #000000; color: #ffffff; }
+QLabel { background: transparent; color: #ffffff; }
+QPushButton { padding: 9px; border: 1px solid #555555; border-radius: 5px; background: #202020; color: #ffffff; }
+QPushButton:hover { background: #303030; }
+QPushButton:disabled { color: #aaaaaa; background: #171717; }
+QListWidget { background: #111111; color: #ffffff; border: 1px solid #333333; border-radius: 5px; }
+QListWidget::item { padding: 12px 6px; color: #ffffff; }
+QListWidget::item:selected { color: #ffffff; background: #3b3b3b; }
+QTextEdit { background: #171717; color: #ffffff; border: 1px solid #555555; border-radius: 5px; padding: 8px; }
+QPushButton#sendButton { background: #285f9d; color: #ffffff; border-color: #5992d2; }
+QPushButton#sendButton:disabled { background: #303030; color: #bbbbbb; }
+QScrollBar:vertical { background: #111111; width: 12px; }
+QScrollBar::handle:vertical { background: #555555; min-height: 24px; border-radius: 5px; }</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="mainLayout" stretch="0,1">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="sidebarLayout">
+      <property name="spacing">
+       <number>12</number>
+      </property>
+      <property name="leftMargin">
+       <number>16</number>
+      </property>
+      <property name="topMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>16</number>
+      </property>
+      <property name="bottomMargin">
+       <number>16</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="sidebarTitle">
+        <property name="styleSheet">
+         <string notr="true">font-size: 21px; font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Чаты</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="modelButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>44</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Модель</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="newChatButton">
+        <property name="text">
+         <string>Новый чат</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="chatsList">
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="textElideMode">
+         <enum>Qt::TextElideMode::ElideRight</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="chatLayout" stretch="0,1,0">
+      <property name="spacing">
+       <number>12</number>
+      </property>
+      <property name="leftMargin">
+       <number>24</number>
+      </property>
+      <property name="topMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>24</number>
+      </property>
+      <property name="bottomMargin">
+       <number>14</number>
+      </property>
+      <item>
+       <widget class="QLineEdit" name="chatTitleEdit">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit { font-size: 21px; font-weight: bold; color: #ffffff; background: #000000; border: 1px solid #333333; border-radius: 4px; padding: 6px; }
+QLineEdit:focus { border-color: #75a8e0; }</string>
+        </property>
+        <property name="text">
+         <string>Новый чат</string>
+        </property>
+        <property name="maxLength">
+         <number>80</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="messagesScroll">
+        <property name="frameShape">
+         <enum>QFrame::Shape::NoFrame</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="messagesWidget">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>1094</width>
+           <height>390</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="messagesLayout">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="composerLayout" stretch="1,0">
+        <item>
+         <widget class="QTextEdit" name="inputEdit">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>105</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>135</height>
+           </size>
+          </property>
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
+          <property name="placeholderText">
+           <string>Введите сообщение…</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="sendButton">
+          <property name="minimumSize">
+           <size>
+            <width>105</width>
+            <height>44</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Отправить</string>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
