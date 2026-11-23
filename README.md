@@ -1,41 +1,51 @@
 # Лицей Чат
 
-Учебный текстовый чат на Python, PyQt6 и SQLite. Сообщения отправляются через RouterAI.ru. Главное окно и окно выбора модели созданы в Qt Designer (`main.ui` и `models.ui`).
+Учебный текстовый чат на Python, PyQt6 и SQLite. Вопросы отправляются через RouterAI.ru. Окна сделаны в Qt Widgets Designer (`main.ui` и `models.ui`).
 
-## Что нужно
+## Скачать проект целиком
 
-- Windows и обычный Python 3.14 x64 с [python.org](https://www.python.org/downloads/windows/) для запуска исходников
-- [Visual Studio Code](https://code.visualstudio.com/download) и [расширение Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) для редактирования
-- Ключ RouterAI и интернет для получения ответов модели
+Нажмите **[Скачать ZIP](https://github.com/domdamafast/LyceumChat/archive/refs/heads/main.zip)** или на странице репозитория **Code → Download ZIP**. Распакуйте архив в обычную папку. Запускайте файлы **из распакованной папки**, а не из окна архива. Все исходники, формы, документы и готовый `LyceumChat.exe` уже внутри.
 
-Для запуска готового `LyceumChat.exe` Python и VS Code не нужны.
+Не скачивайте один `main.py`: ему нужны остальные файлы проекта. Для проверки программы преподавателю достаточно распаковать ZIP и выполнить один из вариантов запуска ниже.
 
-## Запуск в VS Code
+## Вариант 1: запуск готового EXE
 
-1. Скачайте репозиторий и откройте его папку в VS Code.
-2. Скопируйте `settings.example.json` в `settings.json` и впишите свой ключ после `api_key`. Не публикуйте этот файл.
-3. Откройте терминал VS Code и выполните команды по одной:
+1. В распакованной папке дважды щёлкните `LyceumChat.exe`. Python и VS Code для этого не нужны.
+2. Для ответов нейросети скопируйте `settings.example.json` в этой же папке и назовите копию `settings.json`. Откройте её в блокноте и впишите **свой** ключ RouterAI между кавычками после `api_key`.
+3. Запустите EXE снова и отправьте вопрос. Нужны интернет и положительный баланс RouterAI. Без ключа окно и сохранённые чаты открываются, но запрос к модели не отправляется.
 
-```powershell
-py -3.14 -m pip install --user -r requirements.txt
-py -3.14 main.py
-```
+## Вариант 2: запуск кода в VS Code
 
-При следующем запуске достаточно второй команды. Для запуска EXE откройте `LyceumChat.exe` двойным щелчком после создания `settings.json` рядом с ним.
-
-## Возможности
-
-- Несколько чатов с сохранением истории в локальной SQLite-базе
-- Три модели, выбор модели для текущего чата
-- Переименование чата через поле вверху
-- Многострочный ввод: Enter переносит строку, кнопка «Отправить» посылает запрос
-- Ответ выполняется в отдельном потоке, окно не зависает
-
-При первом запуске создаётся `chats.sqlite3`. Файл с перепиской и `settings.json` исключены из Git. Перед защитой смотрите `ТЗ.txt`, `Пояснительная_записка.txt` и `Защита.txt`.
-
-## Сборка EXE
+1. Установите [Python 3.12 x64](https://www.python.org/downloads/release/python-31210/) с официального сайта. При установке на Windows отметьте **Add Python to PATH**. Установите [VS Code](https://code.visualstudio.com/download) и [расширение Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
+2. Откройте **всю распакованную папку** `LyceumChat-main` в VS Code, затем **Терминал → Создать терминал**.
+3. Выполните команды по одной:
 
 ```powershell
-py -3.14 -m pip install --user pyinstaller==6.22.3
-py -3.14 -m PyInstaller --onefile --noconsole --name LyceumChat --add-data "main.ui;." --add-data "models.ui;." main.py
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe main.py
 ```
+
+4. Для ответов модели создайте `settings.json` из `settings.example.json`, как описано выше. При следующем запуске достаточно последней команды.
+
+Если установлена другая обычная версия Python (3.13 или 3.14), замените `-3.12` в первой команде на её номер. Остальные команды не меняются. Если команда `py` не найдена, переустановите Python с официального сайта и включите Python Launcher.
+
+## Что делает программа
+
+- Создаёт несколько чатов и хранит историю в локальной базе SQLite (`chats.sqlite3`)
+- Позволяет выбрать модель для чата и переименовать чат через поле вверху
+- Переносит строку по Enter; отправляет текст кнопкой «Отправить»
+- Выполняет запрос в отдельном потоке, поэтому окно не зависает
+
+Файлы `settings.json` и `chats.sqlite3` создаются рядом с приложением и **не входят в ZIP**: в них находятся личный ключ и история переписки. Для знакомства с устройством проекта откройте `ТЗ.txt`, `Пояснительная_записка.txt` и `Защита.txt`.
+
+## Сборка EXE из исходников
+
+Сборка нужна только после изменения кода. Из папки проекта, после установки зависимостей:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install pyinstaller
+.\.venv\Scripts\python.exe -m PyInstaller --onefile --noconsole --name LyceumChat --add-data "main.ui;." --add-data "models.ui;." main.py
+```
+
+Новый EXE появится в папке `dist`. Для передачи преподавателю используйте готовый ZIP по ссылке в начале инструкции.

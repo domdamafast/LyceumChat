@@ -56,4 +56,3 @@ def save_settings(settings):
     SETTINGS_FILE.write_text(
         json.dumps(settings, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    temporary.replace(SETTINGS_FILE)
